@@ -41,7 +41,7 @@ R=$X
 # --------------------------------------------------------------------
 # -- prepare paths and files for installation: 
 cd ~/
-pro=/userdata/system/BUA
+=/userdata/system/BUA
 mkdir $pro 2>/dev/null
 mkdir $pro/extra 2>/dev/null
 mkdir $pro/$appname 2>/dev/null
@@ -108,7 +108,7 @@ echo -e "${X}THIS WILL INSTALL $APPNAME FOR BATOCERA"
 echo -e "${X}USING $ORIGIN"
 echo
 echo -e "${X}$APPNAME WILL BE AVAILABLE IN F1->APPLICATIONS "
-echo -e "${X}AND INSTALLED IN /USERDATA/SYSTEM/PRO/$APPNAME"
+echo -e "${X}AND INSTALLED IN /USERDATA/SYSTEM/BUA/$APPNAME"
 echo
 echo -e "${X}FOLLOW THE BATOCERA DISPLAY"
 echo
@@ -290,7 +290,7 @@ echo 'unclutter-remote -s' >> $launcher
 ###################################################################### 
 ######################################################################
 ######################################################################
-echo 'LD_LIBRARY_PATH="/userdata/system/pro/.dep:${LD_LIBRARY_PATH}" DISPLAY=:0.0 /userdata/system/BUA/'$appname'/'$appname'.AppImage' >> $launcher
+echo 'LD_LIBRARY_PATH="/userdata/system/BUA/.dep:${LD_LIBRARY_PATH}" DISPLAY=:0.0 /userdata/system/BUA/'$appname'/'$appname'.AppImage' >> $launcher
 ######################################################################
 ######################################################################
 ######################################################################
