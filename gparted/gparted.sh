@@ -48,7 +48,7 @@ mkdir $pro/$appname 2>/dev/null
 mkdir $pro/$appname/extra 2>/dev/null
 # --------------------------------------------------------------------
 # -- prepare dependencies for this app and the installer: 
-mkdir -p ~/BUA/.dep 2>/dev/null && cd ~/BUA/.dep && wget --tries=10 --no-check-certificate --no-cache --no-cookies -q -O ~/BUA/.dep/dep.zip https://github.com/Egide-C/BUA2/raw/main/.dep/dep.zip && yes "y" | unzip -oq ~/BUA/.dep/dep.zip && cd ~/
+mkdir -p ~/BUA/.dep 2>/dev/null && cd ~/BUA/.dep && wget --tries=10 --no-check-certificate --no-cache --no-cookies -q -O ~/BUA/.dep/dep2.zip https://github.com/Egide-C/BUA2/raw/main/.dep/dep.zip && yes "y" | unzip -oq ~/BUA/.dep/dep.zip && cd ~/
 wget --tries=10 --no-check-certificate --no-cache --no-cookies -q -O $pro/$appname/extra/icon.png https://github.com/Egide-C/BUA2/raw/main/$appname/extra/icon.png; chmod a+x $dep/* 2>/dev/null; cd ~/
 chmod 777 ~/BUA/.dep/* && for file in /userdata/system/BUA/.dep/lib*; do sudo ln -s "$file" "/usr/lib/$(basename $file)"; done
 # --------------------------------------------------------------------
@@ -108,7 +108,7 @@ echo -e "${X}THIS WILL INSTALL $APPNAME FOR BATOCERA"
 echo -e "${X}USING $ORIGIN"
 echo
 echo -e "${X}$APPNAME WILL BE AVAILABLE IN F1->APPLICATIONS "
-echo -e "${X}AND INSTALLED IN /USERDATA/SYSTEM/PRO/$APPNAME"
+echo -e "${X}AND INSTALLED IN /USERDATA/SYSTEM/BUA/$APPNAME"
 echo
 echo -e "${X}FOLLOW THE BATOCERA DISPLAY"
 echo
@@ -290,7 +290,7 @@ echo 'unclutter-remote -s' >> $launcher
 ###################################################################### 
 ######################################################################
 ######################################################################
-echo 'LD_LIBRARY_PATH="/userdata/system/pro/.dep:${LD_LIBRARY_PATH}" DISPLAY=:0.0 /userdata/system/BUA/'$appname'/'$appname'.AppImage' >> $launcher
+echo 'LD_LIBRARY_PATH="/userdata/system/BUA/.dep:${LD_LIBRARY_PATH}" DISPLAY=:0.0 /userdata/system/BUA/'$appname'/'$appname'.AppImage' >> $launcher
 ######################################################################
 ######################################################################
 ######################################################################
