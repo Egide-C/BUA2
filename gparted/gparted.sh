@@ -6,7 +6,7 @@ APPNAME="GPARTED" # for installer info
 appname=gparted   # directory name in /userdata/system/pro/...
 AppName=Gparted   # App.AppImage name
 APPPATH=/userdata/system/BUA/$appname/$appname.AppImage
-APPLINK=https://github.com/Egide-C/BUA2/blob/main/gparted/extra/Gparted.AppImage
+APPLINK=https://github.com/Egide-C/BUA2/raw/main/gparted/extra/Gparted.AppImage
 ORIGIN="batocera.pro/app" # credit & info
 # --------------------------------------------------------------------
 # --------------------------------------------------------------------
