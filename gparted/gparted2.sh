@@ -41,7 +41,7 @@ R=$X
 # --------------------------------------------------------------------
 # -- prepare paths and files for installation: 
 cd ~/
-=/userdata/system/BUA
+pro=/userdata/system/BUA
 mkdir $pro 2>/dev/null
 mkdir $pro/extra 2>/dev/null
 mkdir $pro/$appname 2>/dev/null
