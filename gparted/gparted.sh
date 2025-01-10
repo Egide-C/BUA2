@@ -5,8 +5,8 @@
 APPNAME="GPARTED" # for installer info
 appname=gparted   # directory name in /userdata/system/pro/...
 AppName=Gparted   # App.AppImage name
-APPPATH=/userdata/system/pro/$appname/$appname.AppImage
-APPLINK=http://batocera.pro/app/gparted.AppImage
+APPPATH=/userdata/system/BUA/$appname/$appname.AppImage
+APPLINK=https://github.com/Egide-C/BUA2/blob/main/gparted/extra/Gparted.AppImage
 ORIGIN="batocera.pro/app" # credit & info
 # --------------------------------------------------------------------
 # --------------------------------------------------------------------
@@ -41,7 +41,7 @@ R=$X
 # --------------------------------------------------------------------
 # -- prepare paths and files for installation: 
 cd ~/
-pro=/userdata/system/pro
+pro=/userdata/system/BUA
 mkdir $pro 2>/dev/null
 mkdir $pro/extra 2>/dev/null
 mkdir $pro/$appname 2>/dev/null
@@ -68,7 +68,7 @@ clear
 echo
 echo
 echo
-echo -e "${X}BATOCERA.PRO/$APPNAME INSTALLER${X}"
+echo -e "${X}BUA/$APPNAME INSTALLER${X}"
 echo
 echo
 echo
@@ -78,7 +78,7 @@ clear
 echo
 echo
 line $cols '-'; echo
-echo -e "${X}BATOCERA.PRO/$APPNAME INSTALLER${X}"
+echo -e "${X}BUA/$APPNAME INSTALLER${X}"
 line $cols '-'; echo
 echo
 echo
@@ -116,7 +116,7 @@ echo -e "${X}. . .${X}"
 echo
 spinner()
 {
-    status=/userdata/system/pro/$appname/extra/status; done=0
+    status=/userdata/system/BUA/$appname/extra/status; done=0
     local pid=$1
     local delay=0.2
     local spinstr='|/-\'
@@ -135,7 +135,7 @@ spinner()
 }
 waiter()
 {
-status=/userdata/system/pro/$appname/extra/status; done=0
+status=/userdata/system/BUA/$appname/extra/status; done=0
 rm -rf $status 2>/dev/null
 while [[ "$done" -le "1" ]]; do
 sleep 1
@@ -180,9 +180,9 @@ B=$BLUE
 G=$GREEN
 P=$PURPLE
 # --------------------------------------------------------------------
-cols=$(cat /userdata/system/pro/.dep/display.cfg | tail -n 1)
+cols=$(cat /userdata/system/BUA/.dep/display.cfg | tail -n 1)
 cols=$(bc <<<"scale=0;$cols/1.3") 2>/dev/null
-#cols=$(cat /userdata/system/pro/$appname/extra/cols | tail -n 1)
+#cols=$(cat /userdata/system/BUA/$appname/extra/cols | tail -n 1)
 line(){
 echo 1>/dev/null
 }
@@ -261,7 +261,7 @@ echo
 echo -e "${G}DOWNLOADING${W}"
 sleep 1
 echo -e "${T}$APPLINK" | sed 's,https://,> ,g' | sed 's,http://,> ,g' 2>/dev/null
-temp=/userdata/system/pro/$appname/extra/downloads
+temp=/userdata/system/BUA/$appname/extra/downloads
 rm -rf $temp 2>/dev/null
 mkdir $temp 2>/dev/null
 cd $temp
@@ -280,7 +280,7 @@ echo
 # --------------------------------------------------------------------
 echo -e "${G}INSTALLING${W}"
 # -- prepare launcher to solve dependencies on each run and avoid overlay, 
-launcher=/userdata/system/pro/$appname/Launcher
+launcher=/userdata/system/BUA/$appname/Launcher
 rm -rf $launcher
 echo '#!/bin/bash ' >> $launcher
 echo 'unclutter-remote -s' >> $launcher
@@ -290,7 +290,7 @@ echo 'unclutter-remote -s' >> $launcher
 ###################################################################### 
 ######################################################################
 ######################################################################
-echo 'LD_LIBRARY_PATH="/userdata/system/pro/.dep:${LD_LIBRARY_PATH}" DISPLAY=:0.0 /userdata/system/pro/'$appname'/'$appname'.AppImage' >> $launcher
+echo 'LD_LIBRARY_PATH="/userdata/system/pro/.dep:${LD_LIBRARY_PATH}" DISPLAY=:0.0 /userdata/system/BUA/'$appname'/'$appname'.AppImage' >> $launcher
 ######################################################################
 ######################################################################
 ######################################################################
@@ -299,12 +299,12 @@ echo 'LD_LIBRARY_PATH="/userdata/system/pro/.dep:${LD_LIBRARY_PATH}" DISPLAY=:0.
 dos2unix $launcher
 chmod a+x $launcher
 # -- prepare f1 - applications - app shortcut, 
-shortcut=/userdata/system/pro/$appname/extra/$appname.desktop
+shortcut=/userdata/system/BUA/$appname/extra/$appname.desktop
 rm -rf $shortcut 2>/dev/null
 echo "[Desktop Entry]" >> $shortcut
 echo "Version=1.0" >> $shortcut
-echo "Icon=/userdata/system/pro/$appname/extra/icon.png" >> $shortcut
-echo "Exec=/userdata/system/pro/$appname/Launcher" >> $shortcut
+echo "Icon=/userdata/system/BUA/$appname/extra/icon.png" >> $shortcut
+echo "Exec=/userdata/system/BUA/$appname/Launcher" >> $shortcut
 echo "Terminal=false" >> $shortcut
 echo "Type=Application" >> $shortcut
 echo "Categories=Game;batocera.linux;" >> $shortcut
@@ -314,22 +314,22 @@ dos2unix $shortcut
 chmod a+x $shortcut
 cp $shortcut $f1shortcut 2>/dev/null
 # -- prepare prelauncher to avoid overlay,
-pre=/userdata/system/pro/$appname/extra/startup
+pre=/userdata/system/BUA/$appname/extra/startup
 rm -rf $pre 2>/dev/null
 echo "#!/usr/bin/env bash" >> $pre
-echo "cp /userdata/system/pro/$appname/extra/$appname.desktop /usr/share/applications/ 2>/dev/null" >> $pre
+echo "cp /userdata/system/BUA/$appname/extra/$appname.desktop /usr/share/applications/ 2>/dev/null" >> $pre
 dos2unix $pre
 chmod a+x $pre
 # -- add prelauncher to custom.sh to run @ reboot
 csh=/userdata/system/custom.sh
-if [[ -e $csh ]] && [[ "$(cat $csh | grep "/userdata/system/pro/$appname/extra/startup")" = "" ]]; then
+if [[ -e $csh ]] && [[ "$(cat $csh | grep "/userdata/system/BUA/$appname/extra/startup")" = "" ]]; then
 echo -e "\n/userdata/system/pro/$appname/extra/startup" >> $csh
 fi
-if [[ -e $csh ]] && [[ "$(cat $csh | grep "/userdata/system/pro/$appname/extra/startup" | grep "#")" != "" ]]; then
-echo -e "\n/userdata/system/pro/$appname/extra/startup" >> $csh
+if [[ -e $csh ]] && [[ "$(cat $csh | grep "/userdata/system/BUA/$appname/extra/startup" | grep "#")" != "" ]]; then
+echo -e "\n/userdata/system/BUA/$appname/extra/startup" >> $csh
 fi
 if [[ -e $csh ]]; then :; else
-echo -e "\n/userdata/system/pro/$appname/extra/startup" >> $csh
+echo -e "\n/userdata/system/BUA/$appname/extra/startup" >> $csh
 fi
 dos2unix $csh
 # -- done. 
@@ -340,7 +340,7 @@ sleep 1
 line $cols '='; echo
 echo -e "${W}> $APPNAME INSTALLED ${G}OK${W}"
 line $cols '='; echo
-echo "1" >> /userdata/system/pro/$appname/extra/status 2>/dev/null
+echo "1" >> /userdata/system/BUA/$appname/extra/status 2>/dev/null
 sleep 3
 }
 export -f batocera-pro-installer 2>/dev/null
@@ -354,7 +354,7 @@ export -f batocera-pro-installer 2>/dev/null
 function autostart() {
   csh="/userdata/system/custom.sh"
   pcsh="/userdata/system/pro-custom.sh"
-  pro="/userdata/system/pro"
+  pro="/userdata/system/BUA"
   rm -f $pcsh
   temp_file=$(mktemp)
   find $pro -type f \( -path "*/extra/startup" -o -path "*/extras/startup.sh" \) > $temp_file
