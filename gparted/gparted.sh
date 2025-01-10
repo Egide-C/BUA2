@@ -7,7 +7,7 @@ appname=gparted   # directory name in /userdata/system/pro/...
 AppName=Gparted   # App.AppImage name
 APPPATH=/userdata/system/BUA/$appname/$appname.AppImage
 APPLINK=https://github.com/Egide-C/BUA2/raw/main/gparted/extra/Gparted.AppImage
-ORIGIN="batocera.pro/app" # credit & info
+ORIGIN="BUA/app" # credit & info
 # --------------------------------------------------------------------
 # --------------------------------------------------------------------
 # show console/ssh info: 
@@ -48,9 +48,9 @@ mkdir $pro/$appname 2>/dev/null
 mkdir $pro/$appname/extra 2>/dev/null
 # --------------------------------------------------------------------
 # -- prepare dependencies for this app and the installer: 
-mkdir -p ~/pro/.dep 2>/dev/null && cd ~/pro/.dep && wget --tries=10 --no-check-certificate --no-cache --no-cookies -q -O ~/pro/.dep/dep.zip https://github.com/uureel/batocera.pro/raw/main/.dep/dep.zip && yes "y" | unzip -oq ~/pro/.dep/dep.zip && cd ~/
-wget --tries=10 --no-check-certificate --no-cache --no-cookies -q -O $pro/$appname/extra/icon.png https://github.com/uureel/batocera.pro/raw/main/$appname/extra/icon.png; chmod a+x $dep/* 2>/dev/null; cd ~/
-chmod 777 ~/pro/.dep/* && for file in /userdata/system/pro/.dep/lib*; do sudo ln -s "$file" "/usr/lib/$(basename $file)"; done
+mkdir -p ~/BUA/.dep 2>/dev/null && cd ~/BUA/.dep && wget --tries=10 --no-check-certificate --no-cache --no-cookies -q -O ~/BUA/.dep/dep.zip https://github.com/Egide-C/BUA2/raw/main/.dep/dep.zip && yes "y" | unzip -oq ~/BUA/.dep/dep.zip && cd ~/
+wget --tries=10 --no-check-certificate --no-cache --no-cookies -q -O $pro/$appname/extra/icon.png https://github.com/Egide-C/BUA2/raw/main/$appname/extra/icon.png; chmod a+x $dep/* 2>/dev/null; cd ~/
+chmod 777 ~/BUA/.dep/* && for file in /userdata/system/BUA/.dep/lib*; do sudo ln -s "$file" "/usr/lib/$(basename $file)"; done
 # --------------------------------------------------------------------
 # // end of dependencies 
 #
@@ -58,8 +58,8 @@ chmod 777 ~/pro/.dep/* && for file in /userdata/system/pro/.dep/lib*; do sudo ln
 # -- run before installer:  
 killall wget 2>/dev/null && killall $AppName 2>/dev/null && killall $AppName 2>/dev/null && killall $AppName 2>/dev/null
 # --------------------------------------------------------------------
-cols=$($dep/tput cols); rm -rf /userdata/system/pro/$appname/extra/cols
-echo $cols >> /userdata/system/pro/$appname/extra/cols
+cols=$($dep/tput cols); rm -rf /userdata/system/BUA/$appname/extra/cols
+echo $cols >> /userdata/system/BUA/$appname/extra/cols
 line(){
 echo 1>/dev/null
 }
@@ -88,7 +88,7 @@ clear
 echo
 line $cols '-'; echo
 line $cols ' '; echo
-echo -e "${X}BATOCERA.PRO/$APPNAME INSTALLER${X}"
+echo -e "${X}BUA/$APPNAME INSTALLER${X}"
 line $cols ' '; echo
 line $cols '-'; echo
 echo
@@ -98,7 +98,7 @@ clear
 line $cols '\'; echo
 line $cols '/'; echo
 line $cols ' '; echo
-echo -e "${X}BATOCERA.PRO/$APPNAME INSTALLER${X}"
+echo -e "${X}BUA/$APPNAME INSTALLER${X}"
 line $cols ' '; echo
 line $cols '/'; echo
 line $cols '\'; echo
@@ -190,7 +190,7 @@ clear
 echo
 echo
 echo
-echo -e "${W}BATOCERA.PRO/${G}$APPNAME${W} INSTALLER ${W}"
+echo -e "${W}BUA/${G}$APPNAME${W} INSTALLER ${W}"
 echo
 echo
 echo
@@ -200,7 +200,7 @@ clear
 echo
 echo
 echo
-echo -e "${W}BATOCERA.PRO/${W}$APPNAME${W} INSTALLER ${W}"
+echo -e "${W}BUA/${W}$APPNAME${W} INSTALLER ${W}"
 echo
 echo
 echo
@@ -210,7 +210,7 @@ clear
 echo
 echo
 line $cols '-'; echo
-echo -e "${W}BATOCERA.PRO/${G}$APPNAME${W} INSTALLER ${W}"
+echo -e "${W}BUA/${G}$APPNAME${W} INSTALLER ${W}"
 line $cols '-'; echo
 echo
 echo
@@ -220,7 +220,7 @@ clear
 echo
 line $cols '-'; echo
 line $cols '-'; echo
-echo -e "${W}BATOCERA.PRO/${W}$APPNAME${W} INSTALLER ${W}"
+echo -e "${W}BUA/${W}$APPNAME${W} INSTALLER ${W}"
 line $cols '-'; echo
 line $cols '-'; echo
 echo
@@ -230,7 +230,7 @@ clear
 line $cols '='; echo
 line $cols '-'; echo
 line $cols '-'; echo
-echo -e "${W}BATOCERA.PRO/${G}$APPNAME${W} INSTALLER ${W}"
+echo -e "${W}BUA/${G}$APPNAME${W} INSTALLER ${W}"
 line $cols '-'; echo
 line $cols '-'; echo
 line $cols '='; echo
@@ -240,7 +240,7 @@ echo -e "${W}THIS WILL INSTALL $APPNAME FOR BATOCERA"
 echo -e "${W}USING $ORIGIN"
 echo
 echo -e "${W}$APPNAME WILL BE AVAILABLE IN F1->APPLICATIONS"
-echo -e "${W}AND INSTALLED IN /USERDATA/SYSTEM/PRO/$APPNAME"
+echo -e "${W}AND INSTALLED IN /USERDATA/SYSTEM/BUA/$APPNAME"
 echo
 # --------------------------------------------------------------------
 # -- check system before proceeding
@@ -323,7 +323,7 @@ chmod a+x $pre
 # -- add prelauncher to custom.sh to run @ reboot
 csh=/userdata/system/custom.sh
 if [[ -e $csh ]] && [[ "$(cat $csh | grep "/userdata/system/BUA/$appname/extra/startup")" = "" ]]; then
-echo -e "\n/userdata/system/pro/$appname/extra/startup" >> $csh
+echo -e "\n/userdata/system/BUA/$appname/extra/startup" >> $csh
 fi
 if [[ -e $csh ]] && [[ "$(cat $csh | grep "/userdata/system/BUA/$appname/extra/startup" | grep "#")" != "" ]]; then
 echo -e "\n/userdata/system/BUA/$appname/extra/startup" >> $csh
